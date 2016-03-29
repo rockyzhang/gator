@@ -183,13 +183,13 @@ void OlyServerSocket::closeServerSocket() {
 }
 
 void OlyServerSocket::createServerSocket(int port) {
-  int family = AF_INET6;
+  int family = AF_INET;
 
   // Create socket
-  mFDServer = socket_cloexec(PF_INET6, SOCK_STREAM, IPPROTO_TCP);
+  mFDServer = socket_cloexec(PF_INET, SOCK_STREAM, IPPROTO_TCP);
   if (mFDServer < 0) {
-    family = AF_INET;
-    mFDServer = socket_cloexec(PF_INET, SOCK_STREAM, IPPROTO_TCP);
+    family = AF_INET6;
+    mFDServer = socket_cloexec(PF_INET6, SOCK_STREAM, IPPROTO_TCP);
     if (mFDServer < 0) {
       logg.logError("Error creating server socket");
       handleException();
