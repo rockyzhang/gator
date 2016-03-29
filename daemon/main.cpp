@@ -174,12 +174,12 @@ private:
 		int s;
 		struct sockaddr_in6 sockaddr;
 		int on;
-		int family = AF_INET6;
+		int family = AF_INET;
 
-		s = socket_cloexec(AF_INET6, SOCK_DGRAM, IPPROTO_UDP);
+		s = socket_cloexec(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 		if (s == -1) {
-			family = AF_INET;
-			s = socket_cloexec(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+			family = AF_INET6;
+			s = socket_cloexec(AF_INET6, SOCK_DGRAM, IPPROTO_UDP);
 			if (s == -1) {
 				logg.logError("socket failed");
 				handleException();
